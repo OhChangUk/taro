@@ -9,9 +9,19 @@ export default function Home() {
   const [month, setMonth] = useState<string>("1")
   const [time, setTime] = useState<string>("")
 
-  const [resultData, setResultData] = useState(null)
+  const [resultToday, setResultToday] = useState(null)
+  const [resultTomorrow, setResultTomorrow] = useState(null)
+  const [resultMonth, setResultMonth] = useState(null)
+
   const fetchData = async () => {
     const res = await fetch(`/api?gender=${gender}&birthdate=${birthDate}&month=${month}&time=${time}`)
+    const data = await res.json()
+    setResultToday(data.result.day)
+    setResultTomorrow(data.result.tomorrow)
+    setResultMonth(data.result.month)
+    console.log(data.result.day)
+    console.log(data.result.tomorrow)
+    console.log(data.result.month)
   }
 
   const birthChange = (e: React.ChangeEvent<HTMLInputElement>) => {

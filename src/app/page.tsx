@@ -1,6 +1,19 @@
 'use client'
 import React, {useState} from 'react';
 
+interface contentInter {
+  name: string;
+  desc : string;
+  keyword ?: string;
+  index ?: string
+}
+interface today{
+  title: string;
+  date: string;
+  content: contentInter[]
+
+}
+
 
 export default function Home() {
   
@@ -9,7 +22,7 @@ export default function Home() {
   const [month, setMonth] = useState<string>("1")
   const [time, setTime] = useState<string>("")
 
-  const [resultToday, setResultToday] = useState(null)
+  const [resultToday, setResultToday] = useState<today | null>(null); 
   const [resultTomorrow, setResultTomorrow] = useState(null)
   const [resultMonth, setResultMonth] = useState(null)
 
@@ -78,6 +91,20 @@ export default function Home() {
         <p>달 : {month}</p>
         <p>시간 : {time}</p>
       </div>
+      {
+        resultToday && (
+          <>
+            <h2>{resultToday.title}</h2>
+            <p>{resultToday.date}</p>
+            {resultToday.content.map((item, idx) => (
+              <div key={idx}>
+                <h3 className='text-bold text-lg'>{item.name}</h3>
+                <p>{item.desc}</p>
+              </div>
+            ))}
+          </>
+        )
+      }
 
     </>
   )

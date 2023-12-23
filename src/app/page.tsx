@@ -88,8 +88,8 @@ export default function Home() {
         resultToday && (
           <>
             {resultToday.content.map((item, idx) => (
-              <div className="w-2/3 mx-auto">
-                <div key={idx} className='border my-5'>
+              <div key={idx} className="w-2/3 mx-auto">
+                <div className='border my-5'>
                   <h3 className='text-bold text-lg border-b bg-green-300 pl-2 py-1'>{item.name}</h3>
                   <p className='pl-2 py-2'>{item.desc}</p>
                 </div>
